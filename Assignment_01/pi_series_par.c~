@@ -5,15 +5,15 @@
 
 struct pthread_args
 {
-	double start, end, out;
+	double in1, in2, out;
 };
 
 void * pi_sum(void *ptr)	{
 	struct pthread_args *arg = ptr;
 	arg->out = 0;
-	while (arg->start < arg->end) {
-		arg->out += powf((-1.0f),arg->start) / ((double)(2 * arg->start + 1));
-		arg->start++;
+	while (arg->in1 < arg->in2) {
+		arg->out += powf((-1.0f),arg->in1) / ((double)(2 * arg->in1 + 1));
+		arg->in1++;
 	}
 
 	return NULL;
@@ -37,20 +37,20 @@ double pi_series(long num_terms, long num_threads)
 	{
 		if (rem == 0)	/* If no remainder then distribute equal work to all threads	*/
 		{
-		thread_arg[j].start = j * iter;
-		thread_arg[j].end = (j + 1) * iter;
+		thread_arg[j].in1 = j * iter;
+		thread_arg[j].in2 = (j + 1) * iter;
 		}
 		else	/* If remainder exist then 1st thread takes the extra load of the remainder	*/
 		{
 			if (j == 0)
 			{
-				thread_arg[j].start = j * iter;
-				thread_arg[j].end = (j + 1) * iter + rem;
+				thread_arg[j].in1 = j * iter;
+				thread_arg[j].in2 = (j + 1) * iter + rem;
 			}
 			else	/* Other threads take equal work load	*/
 			{
-				thread_arg[j].start = j * iter + rem;
-				thread_arg[j].end = (j + 1) * iter + rem;
+				thread_arg[j].in1 = j * iter + rem;
+				thread_arg[j].in2 = (j + 1) * iter + rem;
 			}
 		}
 	}
