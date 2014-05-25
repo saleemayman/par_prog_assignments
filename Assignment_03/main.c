@@ -58,13 +58,14 @@ void r_pentomino(unsigned char *grid, unsigned int dim_x, unsigned int dim_y, un
 {
 	unsigned char (*c_grid)[dim_x] = (unsigned char (*)[dim_x])grid;
 
-	c_grid[(y - 1) % dim_y][(x - 0) % dim_x] = 1;
-	c_grid[(y - 1) % dim_y][(x + 1) % dim_x] = 1;
+	c_grid[(y + dim_y - 1) % dim_y][(x + dim_x - 0) % dim_x] = 1;
+	c_grid[(y + dim_y - 1) % dim_y][(x + dim_x + 1) % dim_x] = 1;
 
-	c_grid[(y - 0) % dim_y][(x - 1) % dim_x] = 1;
-	c_grid[(y - 0) % dim_y][(x - 0) % dim_x] = 1;
+	c_grid[(y + dim_y - 0) % dim_y][(x + dim_x - 1) % dim_x] = 1;
+	c_grid[(y + dim_y - 0) % dim_y][(x + dim_x - 0) % dim_x] = 1;
 
-	c_grid[(y + 1) % dim_y][(x - 0) % dim_x] = 1;
+	c_grid[(y + dim_y + 1) % dim_y][(x + dim_x - 0) % dim_x] = 1;
+	/*printf("c_grid: %u\n", c_grid[(y + dim_y + 1) % dim_y][(x + dim_x - 0) % dim_x]);*/
 }
 
 int main(int argc, char *argv[])
@@ -83,7 +84,7 @@ int main(int argc, char *argv[])
 	if (argc > 4)
 		num_threads = strtoul(argv[4], NULL, 0);
 
-	if(dim_x < 9 || dim_y < 9)
+	if(dim_x < 1 || dim_y < 1)
 	{
 		printf("Invalid dim_x / dim_y!\n");
 		exit(EXIT_FAILURE);
@@ -108,9 +109,7 @@ int main(int argc, char *argv[])
 	struct timespec begin, end;
 
 	clock_gettime(CLOCK_REALTIME, &begin);
-
 	unsigned int living_cells = gol(grid, dim_x, dim_y, time_steps, num_threads);
-
 	clock_gettime(CLOCK_REALTIME, &end);
 
 	print_gol(grid, dim_x, dim_y);
