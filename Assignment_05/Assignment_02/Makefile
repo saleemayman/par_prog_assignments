@@ -1,6 +1,6 @@
 NAME = prime_count
 CC = gcc
-CFLAGS = -std=gnu99 -pthread -fstrict-overflow -Werror -Wall -Wshadow -Wstrict-overflow=5 -pedantic
+CFLAGS = -std=gnu99 -pthread -fopenmp -fstrict-overflow -Werror -Wall -Wshadow -Wstrict-overflow=5 -pedantic
 LDFLAGS = -lm -lpthread -lrt
 
 #Compiler flags
