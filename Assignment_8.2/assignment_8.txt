@@ -1,0 +1,21 @@
+
+the exercise for loop transformations includes three assignments. In each assignment you have to transform a loop and use OpenMP pragmas for the parallelization. Every loop contains accesses to two-dimensional arrays of size (N,N).
+
+Assignment 8.1
+
+Apply loop-distribution to eliminate the loop-carried dependences. Other transformations may help to preserve dependences.
+
+Assignment 8.2
+
+Apply loop-alignment to eliminate the loop-carried dependences. The final statements may not contain any if-conditionals. Other transformations may help to preserve dependences.
+
+Assignment 8.3
+
+Apply loop-fusion and loop-alignment to transform the two loops into a parallel loop. Other transformations may help to preserve dependences.
+
+Hints:
+
+- Draw the dependency graph to get possible loop transformations and to     check   whether the    dependences are preserved.
+- Remember all loop transformations from the lecture/tutorial.
+- Consider the iteration bounds.
+- Test programs are useful to check equality of the output.
