@@ -57,7 +57,7 @@ void matrix_print(unsigned long **a, unsigned long **b, unsigned long **c, unsig
 
 int main(int argc, char** argv) {
 
-    int N = 4;
+    int N = 10000;
     
 	unsigned long **a = get_int64_twodim_array(N+1);
 	unsigned long **b = get_int64_twodim_array(N+1);
@@ -72,8 +72,8 @@ int main(int argc, char** argv) {
 
 	printf("\nProcessing Time: %.3lf seconds", ts_to_double(ts_diff(begin, end)));
 	
-	printf("\na: \t\t\t\t\tb: \t\t\t\t\tc: \t\t\t\t\td: \t\t\t\t\t\n");
-	matrix_print(a, b, c, d, N);
+	/*printf("\na: \t\t\t\t\tb: \t\t\t\t\tc: \t\t\t\t\td: \t\t\t\t\t\n");
+	matrix_print(a, b, c, d, N);*/
 
 	free(a);
 	free(b);
